@@ -1,6 +1,6 @@
 
 
-report.collect.graphs <- function(
+report.collect.graphs <- function(raw_text,
   tags = c('Þjó', 
            'Líkamsárás,',
            'Önnur ofbeldisbrot',

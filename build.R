@@ -16,8 +16,8 @@ pdf_names <- list.files(
 ## sæki innihaldið í pdf skjölunum á textaformi
 raw_text <- lapply(pdf_names, pdf_text)
 names(raw_text) <- pdf_names
-
-# raw.text <- raw_text[[4]]
+names(raw_text)
+# raw.text <- raw_text[[length(raw_text)]]
 
 ## ##########################################
 ##  verkefni 1:
@@ -33,6 +33,7 @@ f <- function(x){
 
 samantektir <- map_df(raw_text, f)
 samantektir <- samantektir %>% as_tibble()
+
 
 samantektir.cl <- samantektir %>% 
   left_join(map.ATV, by = 'atvik') %>%
@@ -53,7 +54,7 @@ write.csv(samantektir.cl, './_GognUt/afbrotatolur_samantektir.csv', row.names = 
 ##      Þetta er ekki eins hreinleg skröpun og annað, en er í nokkrum
 ##    abströktum af föllum. Sennilega er hægt að vinna þetta á auðveldari hátt
 
-details <- report.collect.graphs()
+details <- report.collect.graphs(raw_text=raw_text)
 
 # hreinsa upp tölurnar lítillega
 details.cl <- details %>% 
